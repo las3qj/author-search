@@ -28,8 +28,11 @@ function BookCard ({book, onAction, buttonText, buttonVariant, children=null}) {
     );
 }
 
-function LibraryCard ({book, onDelete}) {
-    return <BookCard book={book} onAction={onDelete} buttonText="Remove from library" buttonVariant="outline-danger"/>;
+function LibraryCard ({book, onDelete, onFavorite}) {
+    return <BookCard book={book} onAction={onDelete} buttonText="Remove from library" buttonVariant="outline-danger">
+        <Button variant={(book.favorite==="true"?"":"outline-")+"info"} onClick={onFavorite}>
+            {(book.favorite==="true"?"Unf":"F")+"avorite"}</Button>
+    </BookCard>;
 }
 
 function SearchCard ({book, onAction, onNext, onPrev}) {

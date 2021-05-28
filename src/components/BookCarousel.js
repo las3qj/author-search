@@ -26,7 +26,7 @@ function BookCarousel ({books, onAdd}) {
         <Carousel controls={false} indicators={false} interval={null} activeIndex={index} onSelect={handleSelect}>
             {books.map((book, index2) => 
                 <Carousel.Item>
-                    <SearchCard book={book} onAction={book.local?() => history.push('/library'):() => onAdd(index2)} 
+                    <SearchCard book={book} onAction={book.local?() => history.push('/'):() => onAdd(index2)} 
                         onNext={()=>handleNext(index2)} onPrev={()=>handlePrev(index2)}/>
                 </Carousel.Item>
             )}

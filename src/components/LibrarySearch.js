@@ -25,7 +25,7 @@ function LibrarySearch({books, setBooks}) {
     }, [currSort])
 
     return(
-        <Row style={{paddingLeft: 90, paddingRight: 90, margin: 20}}>
+        <Row style={{paddingLeft: 90, paddingRight: 90, margin: 30}}>
             <Col>
                 <h5>Sort by..</h5>
             </Col>

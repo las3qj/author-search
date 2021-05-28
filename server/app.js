@@ -28,7 +28,7 @@ const getGoogleBooks = async (url) => {
             if(item.volumeInfo.imageLinks !== undefined && item.volumeInfo.imageLinks.thumbnail !== undefined){
               image = item.volumeInfo.imageLinks.thumbnail;
             }
-            books.push({title: item.volumeInfo.title, author, image, id: item.id, local: false});
+            books.push({title: item.volumeInfo.title, author, image, id: item.id, favorite: false, local: false});
           });
           return books;
         })
@@ -58,6 +58,16 @@ app.get('/library', async (req, res) => {
     res.json(books);
 });
 
+app.put('/library', async (req, res) => {
+  const title = req.query.title;
+  const author = req.query.author;
+  const image = req.query.image;
+  const favorite = req.query.favorite;
+  const book = {author, title, image, favorite};
+  const id = req.query.id;
+  db.collection("books").doc(id).set(book).then(resp => res.sendStatus(200).end());
+})
+
 app.delete('/library', async (req, res) => {
   const snapshot = await db.collection("books").get();
   const id = req.query.id;
@@ -85,7 +95,8 @@ app.post('/search', async (req, res) => {
     const title = req.query.title;
     const author = req.query.author;
     const image = req.query.image;
-    const book = {author, title, image};
+    const favorite = req.query.favorite;
+    const book = {author, title, image, favorite};
     const id = req.query.id;
     db.collection("books").doc(id).set(book).then(resp => res.sendStatus(200).end());
 })

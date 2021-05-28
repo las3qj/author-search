@@ -44,6 +44,7 @@ function SearchDash() {
         url.searchParams.append("title", book.title);
         url.searchParams.append("author", book.author);
         url.searchParams.append("image", book.image);
+        url.searchParams.append("favorite", "false");
         url.searchParams.append("id", book.id);
         fetch(url, {method: 'POST'});
         const newSearches = searches.slice();
